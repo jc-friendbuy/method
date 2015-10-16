@@ -1,3 +1,14 @@
-.cache
+# Autoenv
+.env
+
+# General
 *.pyc
+
+# OS X
 .DS_Store
+
+# py.test
+.cache
+
+# virtualenv
+.venv
