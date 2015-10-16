@@ -1,3 +1,5 @@
+# Author and copyright: Juan Carlos Coto, 2015.  Usage under explicit instruction only.
+
 import sys
 sys.path.append("../")
 import ipdb

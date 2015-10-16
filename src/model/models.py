@@ -1,3 +1,5 @@
+# Author and copyright: Juan Carlos Coto, 2015.  Usage under explicit instruction only.
+# Basic model functions.  Should be applicable to any case where there is f(x) = y.
 
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression

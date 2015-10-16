@@ -1,3 +1,7 @@
+# Author and copyright: Juan Carlos Coto, 2015.  Usage under explicit instruction only.
+# Module to create and use modeling pipelines.  The idea here is that the main modeling process
+# is taken care of, and the user provides the actual implementation.
+
 """
 Create a modeling pipeline with the configured runners and data.
 

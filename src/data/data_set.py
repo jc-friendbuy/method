@@ -1,3 +1,5 @@
+# Author and copyright: Juan Carlos Coto, 2015.  Usage under explicit instruction only.
+# Module for dataset handling.  A dataset is composed of training and validation data.
 
 def create():
     return dict()
