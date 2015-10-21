@@ -9,6 +9,7 @@
 
 # py.test
 .cache
+__pycache__
 
 # virtualenv
 .venv
