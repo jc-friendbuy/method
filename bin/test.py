@@ -1,6 +1,6 @@
 import sys
-sys.path.append("../method")
+sys.path.append("../")
 
 import pytest
 
-pytest.main("-l test" + " ".join(sys.argv[1:]))
+pytest.main("-l test " + " ".join(sys.argv[1:]))
