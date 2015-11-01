@@ -1,29 +1,21 @@
 # Author and copyright: Juan Carlos Coto, 2015.  Usage under explicit instruction only.
 # Module for dataset handling.  A dataset is composed of training and validation data.
 
-def create():
-    return dict()
+class DataSet(object):
 
-def add_training_data_subset(data_set, input_data, output_data):
-    _add_data_subset(data_set, "training", input_data, output_data)
-    return data_set
+    def __init__(self, name, training_data, validation_data):
+        self._name = name
+        self._training_data = training_data
+        self._validation_data = validation_data
 
-def add_validation_data_subset(data_set, input_data, output_data):
-    _add_data_subset(data_set, "validation", input_data, output_data)
-    return data_set
+    @property
+    def name(self):
+        return self._name
 
-def _add_data_subset(data_set, label, input_data, output_data):
-    assert label not in data_set, "Trying to rewrite %s dataset" % label
-    data_set[label] = _create_data_subset_from_input_and_output_data(input_data, output_data)
+    @property
+    def training_data(self):
+        return self._training_data
 
-def _create_data_subset_from_input_and_output_data(input_data, output_data):
-    subset = dict()
-    subset["inputs"] = input_data
-    subset["outputs"] = output_data
-    return subset
-
-def get_training_subset(data_set):
-    return data_set["training"]
-
-def get_validation_subset(data_set):
-    return data_set["validation"]
+    @property
+    def validation_data(self):
+        return self._validation_data
