@@ -12,7 +12,6 @@ def linear(x, y):
 def quadratic(x, y):
     poly = PolynomialFeatures(degree=2)
     polinomial_x = PolynomialFeatures(degree=2).fit_transform(x)
-
     regression = LinearRegression()
     regression.fit(polinomial_x, y)
     return regression.predict(polinomial_x)
