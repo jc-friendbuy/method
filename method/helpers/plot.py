@@ -3,8 +3,8 @@
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.figure import Figure
-from matplotlib import Axes
-from StringIO import StringIO
+from matplotlib.axes import Axes
+from io import BytesIO
 from contextlib import closing
 
 class Plot(object):
@@ -18,7 +18,7 @@ class Plot(object):
 
     def _initialize_graphics(self):
         self._figure = Figure()
-        self._plot = figure.add_subplot(1, 1, 1)
+        self._plot = self._figure.add_subplot(1, 1, 1)
         self._canvas = FigureCanvasAgg(self._figure)
 
     def _assert_graphics_is_initialized(self):
@@ -52,6 +52,6 @@ class Plot(object):
         return self
 
     def as_raw_png_binary_string(self):
-        with closing(StringIO) as output_string:
-            self._canvas.print_png(output_string, dpi=self._PNG_DPI)
-            return output_string
+        output_string = BytesIO()
+        self._canvas.print_png(output_string, dpi=self._PNG_DPI)
+        return output_string

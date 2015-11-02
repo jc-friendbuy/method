@@ -17,7 +17,7 @@ def coefficient_of_determination(observed, predicted):
     predicted as usually called).
     """
     _validate_arrays(observed, predicted)
-    return _r2_score(observed, predicted)s
+    return _r2_score(observed, predicted)
 
 def _validate_arrays(x, y):
     """
