@@ -3,5 +3,8 @@
 
 import matplotlib.pyplot as plt
 
-def scatter_fit(training_set, validation_set, model_results):
-    pass
+def scatter_plot_2D(x, y, line, dot_color='black', line_color='blue'):
+    plt.scatter(x, y, color='black')
+    plt.plot(x, linear(x, y), color='blue', linewidth=3)
+    plt.savefig(get_file_name("linear"))
+    plt.clf()
