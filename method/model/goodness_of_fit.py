@@ -4,12 +4,12 @@
 import numpy as np
 from sklearn.metrics import r2_score as _r2_score
 
-def difference_of_squares(x, y):
+def residual_sum_of_squares(observed, predicted):
     """
     Calculare the difference of the squares of both vectors.
     """
-    _validate_arrays(x, y)
-    return sum((x - y) ^ 2)
+    _validate_arrays(observed, predicted)
+    return sum((observed - predicted) ** 2)
 
 def coefficient_of_determination(observed, predicted):
     """
