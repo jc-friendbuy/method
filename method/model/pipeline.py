@@ -58,8 +58,9 @@ class Pipeline(object):
             data_set = next(self._get_next_data_set())
             result = DataSetResult(data_set)
             for model_function in self._model_functions:
-                training_result = self._train(model_function, training_data)
-                validation_result = self._validate(model_function, training_result, validation_data)
+                training_result = self._train(model_function, data_set.training_data)
+                validation_result = self._validate(model_function, training_result, \
+                    data_set.validation_data)
                 result.add_model(model_function, training_result, validation_result)
             return result
         # Specifically catch and re-throw StopIteration to signal the end of the data iterator
