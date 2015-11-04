@@ -4,7 +4,7 @@ from method.data.data_set import DataSet
 class DataSetResult(object):
 
     def __init__(self, data_set):
-        assert isinstance(dataset, DataSet)
+        assert isinstance(data_set, DataSet)
         self._data_set = data_set
         self._model_data = dict()
 
