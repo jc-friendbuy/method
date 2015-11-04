@@ -23,7 +23,7 @@ class Pipeline(object):
         assert training_runner is not None, "Must have a training runner function"
         assert validation_runner is not None, "Must have a validation runner function"
         assert data_iterator is not None, "Must have a data iterator function"
-        assert model_functions is not None and len(model_functions) >= 1,
+        assert model_functions is not None and len(model_functions) >= 1, \
             "Must specify a list of model functions with at least one element"
 
         self._training_runner = training_runner
