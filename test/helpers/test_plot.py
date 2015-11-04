@@ -4,7 +4,9 @@ import pytest
 import numpy as np
 from method.helpers.plot import Plot
 
-"""Tests for `model/goodness_of_fit.py`."""
+"""
+Tests for helpers/plot.py
+"""
 
 test_data = [
     ([1, 2, 3, 4, 5], [1.9, 3.7, 5.8, 8.0, 9.6])
