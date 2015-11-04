@@ -19,6 +19,6 @@ class DataSetResult(object):
     def get_model_results(self, model_function):
         return self._model_data[model_function]
 
-    def iteritems(self):
-        for key, value in self._model_data.iteritems():
+    def items(self):
+        for key, value in self._model_data.items():
             yield key, value
