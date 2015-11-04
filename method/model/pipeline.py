@@ -55,7 +55,7 @@ class Pipeline(object):
         Throws StopIteration when no more data_set items are available.
         """
         try:
-            data_set = self._get_next_data_set()
+            data_set = next(self._get_next_data_set())
             result = DataSetResult(data_set)
             for model_function in model_functions:
                 training_result = self._train(model_function, training_data)
