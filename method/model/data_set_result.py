@@ -14,7 +14,11 @@ class DataSetResult(object):
 
     def add_model(self, model_function, training_result, validation_result):
         assert model_function.__name__ not in self._model_data
-        self._model_data[model_function.__name__] = (training_result, validation_result)
+        self._model_data[model_function] = (training_result, validation_result)
 
     def get_model_results(self, model_function):
-        return self._model_data[model_function.__name__]
+        return self._model_data[model_function]
+
+    def iteritems(self):
+        for key, value in self._model_data.iteritems():
+            yield key, value
