@@ -2,7 +2,7 @@
 # Module to create and use modeling pipelines.  The idea here is that the main modeling process
 # is taken care of, and the user provides the actual implementation of the steps.
 
-from data_set_result import DataSetResult
+from method.model.data_set_result import DataSetResult
 
 """
 Create a modeling pipeline with the configured runners and data.

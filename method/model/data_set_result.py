@@ -1,5 +1,5 @@
 
-from data_set import DataSet
+from method.data.data_set import DataSet
 
 class DataSetResult(object):
 
