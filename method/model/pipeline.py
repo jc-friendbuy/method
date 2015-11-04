@@ -34,7 +34,7 @@ class Pipeline(object):
         self._post_processing_functions = post_processing_functions or list()
 
     def _get_next_data_set(self):
-        for data_set in self._data_iterator():
+        for data_set in self._data_iterator:
             yield data_set
 
     def run(self):
