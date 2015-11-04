@@ -57,7 +57,7 @@ class Pipeline(object):
         try:
             data_set = next(self._get_next_data_set())
             result = DataSetResult(data_set)
-            for model_function in model_functions:
+            for model_function in self._model_functions:
                 training_result = self._train(model_function, training_data)
                 validation_result = self._validate(model_function, training_result, validation_data)
                 result.add_model(model_function, training_result, validation_result)
