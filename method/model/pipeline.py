@@ -9,7 +9,7 @@ Create a modeling pipeline with the configured runners and data.
 
 training_runner: function(model_function, training_data)
 validation_runner: function(model_function, validation_data, training_result)
-data_iterator: yields(data_set_name, data_set) [where data_set is a data_set-module-created object]
+data_set_generator: yields(data_set_name, data_set) [where data_set is a data_set-module-created object]
 model_functions: list(function(params)), where the params must be provided by the training_runner function (i.e. that one converts from the training data to the correct input variables)
 pre_processing_functions: list(function(sub_data_set)) which get chain-applied to the provided data_set (they must understand the data format)
 post_processing_functions list(function(training_set, validation_set, model_results))
@@ -17,24 +17,20 @@ post_processing_functions list(function(training_set, validation_set, model_resu
 
 class Pipeline(object):
 
-    def __init__(self, training_runner, validation_runner, data_iterator, model_functions, \
+    def __init__(self, training_runner, validation_runner, data_set_generator, model_functions, \
                     pre_processing_functions=None, post_processing_functions=None):
         assert training_runner is not None, "Must have a training runner function"
         assert validation_runner is not None, "Must have a validation runner function"
-        assert data_iterator is not None, "Must have a data iterator function"
+        assert data_set_generator is not None, "Must have a data set generator function"
         assert model_functions is not None and len(model_functions) >= 1, \
             "Must specify a list of model functions with at least one element"
 
         self._training_runner = training_runner
         self._validation_runner = validation_runner
-        self._data_iterator = data_iterator
+        self._data_set_generator = data_set_generator()
         self._model_functions = model_functions
         self._pre_processing_functions = pre_processing_functions or list()
         self._post_processing_functions = post_processing_functions or list()
-
-    def _get_next_data_set(self):
-        for data_set in self._data_iterator():
-            yield data_set
 
     def run(self):
         """
@@ -55,7 +51,7 @@ class Pipeline(object):
         Throws StopIteration when no more data_set items are available.
         """
         try:
-            data_set = next(self._get_next_data_set())
+            data_set = self._get_next_data_set()
             result = DataSetResult(data_set)
             for model_function in self._model_functions:
                 training_result = self._train(model_function, data_set.training_data)
@@ -66,6 +62,9 @@ class Pipeline(object):
         # Specifically catch and re-throw StopIteration to signal the end of the data iterator
         except StopIteration:
             raise
+
+    def _get_next_data_set(self):
+        return next(self._data_set_generator)
 
     def _train(self, model_function, training_data):
         """
