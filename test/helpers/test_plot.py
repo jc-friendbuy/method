@@ -16,7 +16,7 @@ test_data = [
 ]
 
 @pytest.mark.parametrize("x,y", test_data)
-def test_png_file_works(x, y, tmpdir):
+def test_png_file_contents_match_png_image_data(x, y, tmpdir):
     """
     Is the R^2 calculation for x and predicted equals to a known quantity that is correct?
     """
