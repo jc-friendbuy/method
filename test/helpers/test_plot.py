@@ -2,7 +2,10 @@
 import unittest
 import pytest
 import numpy as np
-from method.helpers.plot import Plot
+from method.helpers.plotting.bidimensional_graphic import BidimensionalGraphic
+from method.helpers.plotting.data_formatters.scatter_data_formatter import ScatterDataFormatter
+from method.helpers.plotting.trend_formatters.no_trend_formatter import NoTrendFormatter
+from contextlib import closing
 
 """
 Tests for helpers/plot.py
@@ -13,12 +16,22 @@ test_data = [
 ]
 
 @pytest.mark.parametrize("x,y", test_data)
-def test_png_file_works(x, y):
+def test_png_file_works(x, y, tmpdir):
     """
     Is the R^2 calculation for x and predicted equals to a known quantity that is correct?
     """
-    plot = Plot()
-    output = plot.scatter_2D(x, y).as_raw_png_binary_string()
-    with open("/Users/jc/Desktop/out.png", "wb") as f:
-        f.write(output.getvalue())
-    output.close()
+    output_path = str(tmpdir.mkdir("out").join("scatter.png"))
+
+    graphic = BidimensionalGraphic(ScatterDataFormatter(), NoTrendFormatter())
+    graphic.add_data(x, y)
+
+    with closing(graphic.as_raw_png_binary_string()) as output_stream:
+        output_stream_data = output_stream.getvalue()
+
+    with open(output_path, "wb") as out_file:
+        out_file.write(output_stream_data)
+
+    with open(output_path, "rb") as in_file:
+        file_contents = in_file.read()
+
+    assert file_contents == output_stream_data
