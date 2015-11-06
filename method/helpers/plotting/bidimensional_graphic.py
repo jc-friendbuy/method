@@ -5,26 +5,19 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.figure import Figure
 from matplotlib.axes import Axes
 from io import BytesIO
-from contextlib import closing
 
-class Plot(object):
+class BidimensionalGraphic(object):
 
-    _PNG_DPI = 150
+    _DEFAULT_RESOLUTION_DPI = 150
 
-    def __init__(self):
+    def __init__(self, data_formatter, trend_formatter):
+        self._data_formatter = data_formatter
+        self._trend_formatter = trend_formatter
+
         self._figure = None
         self._plot = None
         self._canvas = None
-
-    def _initialize_graphics(self):
-        self._figure = Figure()
-        self._plot = self._figure.add_subplot(1, 1, 1)
-        self._canvas = FigureCanvasAgg(self._figure)
-
-    def _assert_graphics_is_initialized(self):
-        assert isinstance(self._figure, Figure)
-        assert isinstance(self._plot, Axes)
-        assert isinstance(self._canvas, FigureCanvasAgg)
+        self._initialize_graphics()
 
     def set_title(self, title):
         self._assert_graphics_is_initialized()
@@ -41,17 +34,28 @@ class Plot(object):
         self._plot.set_ylabel(label)
         return self
 
-    def scatter_2D(self, x, y, dot_color='black'):
-        self._initialize_graphics()
-        self._plot.scatter(x, y, color=dot_color)
+    def add_data(self, x, y):
+        self._data_formatter.format(x, y, self._plot)
         return self
 
-    def line(self, x, y, line_color='blue', line_width=2):
-        self._assert_graphics_is_initialized()
-        self._plot.plot(x, y, color=line_color, linewidth=line_width)
+    def add_trend(self, x, trend):
+        self._trend_formatter.format(x, trend, self._plot)
         return self
 
     def as_raw_png_binary_string(self):
         output_string = BytesIO()
-        self._canvas.print_png(output_string, dpi=self._PNG_DPI)
+        self._canvas.print_png(output_string, dpi=self._DEFAULT_RESOLUTION_DPI)
         return output_string
+
+    def reset(self):
+        self._initialize_graphics()
+
+    def _initialize_graphics(self):
+        self._figure = Figure()
+        self._plot = self._figure.add_subplot(1, 1, 1)
+        self._canvas = FigureCanvasAgg(self._figure)
+
+    def _assert_graphics_is_initialized(self):
+        assert isinstance(self._figure, Figure)
+        assert isinstance(self._plot, Axes)
+        assert isinstance(self._canvas, FigureCanvasAgg)
