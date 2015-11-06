@@ -1,3 +1,12 @@
+# All classes must implement the format(self, x, y, plot) method
+
+class NoTrendFormatter(object):
+
+    def __init__(self):
+        pass
+
+    def format(self, x, y, plot):
+        return None
 
 class LineTrendFormatter(object):
 

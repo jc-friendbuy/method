@@ -2,9 +2,9 @@
 import unittest
 import pytest
 import numpy as np
-from method.helpers.plotting.bidimensional_graphic import BidimensionalGraphic
-from method.helpers.plotting.data_formatters.scatter_data_formatter import ScatterDataFormatter
-from method.helpers.plotting.trend_formatters.no_trend_formatter import NoTrendFormatter
+from method.helpers.plotting.bidimensional_graph import BidimensionalGraph
+from method.helpers.plotting.data_formatters import ScatterDataFormatter
+from method.helpers.plotting.trend_formatters import NoTrendFormatter
 from contextlib import closing
 
 """
