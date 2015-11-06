@@ -9,4 +9,4 @@ class LineTrendFormatter(object):
         """
         Assumes plot is a matplotlib plot object.
         """
-        plot.plot(x, y, color=self._line_color, linewidth=self._line_width)
+        return plot.plot(x, y, color=self._line_color, linewidth=self._line_width)

@@ -8,4 +8,4 @@ class ScatterDataFormatter(object):
         """
         Assumes plot is a matplotlib plot object.
         """
-        plot.scatter(x, y, color=self._dot_color)
+        return plot.scatter(x, y, color=self._dot_color)

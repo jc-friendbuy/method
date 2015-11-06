@@ -5,4 +5,4 @@ class NoTrendFormatter(object):
         pass
 
     def format(self, *args):
-        pass
+        return None
