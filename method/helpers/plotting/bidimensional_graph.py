@@ -6,7 +6,7 @@ from matplotlib.figure import Figure
 from matplotlib.axes import Axes
 from io import BytesIO
 
-class BidimensionalGraphic(object):
+class BidimensionalGraph(object):
 
     _DEFAULT_RESOLUTION_DPI = 150
 

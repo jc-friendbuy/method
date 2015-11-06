@@ -22,7 +22,7 @@ def test_png_file_contents_match_png_image_data(x, y, tmpdir):
     """
     output_path = str(tmpdir.mkdir("out").join("scatter.png"))
 
-    graphic = BidimensionalGraphic(ScatterDataFormatter(), NoTrendFormatter())
+    graphic = BidimensionalGraph(ScatterDataFormatter(), NoTrendFormatter())
     graphic.add_data(x, y)
 
     with closing(graphic.as_raw_png_binary_string()) as output_stream:
