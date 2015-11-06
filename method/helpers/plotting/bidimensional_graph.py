@@ -49,6 +49,7 @@ class BidimensionalGraph(object):
 
     def reset(self):
         self._initialize_graphics()
+        return self
 
     def _initialize_graphics(self):
         self._figure = Figure()
