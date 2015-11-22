@@ -1,0 +1,15 @@
+# Autoenv
+.env
+
+# General
+*.pyc
+
+# OS X
+.DS_Store
+
+# py.test
+.cache
+__pycache__
+
+# virtualenv
+.venv
