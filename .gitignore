@@ -1,4 +1,5 @@
-# Autoenv
+# Autoenv and pyenv
+.python-version
 .env
 
 # General
