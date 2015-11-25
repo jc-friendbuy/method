@@ -3,7 +3,7 @@ class ScatterDataFormatter(object):
     def __init__(self, dot_color='black'):
         self._dot_color = dot_color
 
-    def format(self, x, y, plot):
+    def format(self, x, y, plot, **kwargs):
         """
         Assumes plot is a matplotlib plot object.
         """
@@ -14,7 +14,7 @@ class HistogramDataFormatter(object):
         self._face_color = face_color
         self._grid = grid
 
-    def format(self, x, y, plot):
+    def format(self, x, y, plot, **kwargs):
         """
         Assumes plot is a matplotlib plot object.
         """

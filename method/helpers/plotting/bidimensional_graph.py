@@ -34,12 +34,12 @@ class BidimensionalGraph(object):
         self._plot.set_ylabel(label)
         return self
 
-    def add_data(self, x, y):
-        self._data_formatter.format(x, y, self._plot)
+    def add_data(self, x, y, **kwargs):
+        self._data_formatter.format(x, y, self._plot, **kwargs)
         return self
 
-    def add_trend(self, x, trend):
-        self._trend_formatter.format(x, trend, self._plot)
+    def add_trend(self, x, trend, **kwargs):
+        self._trend_formatter.format(x, trend, self._plot, **kwargs)
         return self
 
     def as_raw_png_binary_string(self):
